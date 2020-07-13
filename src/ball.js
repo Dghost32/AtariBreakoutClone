@@ -1,12 +1,12 @@
 export default class Ball {
   constructor(game) {
     this.ball = document.getElementById("ball");
-    this.position = { x: 10, y: 10 };
+    this.position = { x: 0, y: 130 };
     this.speed = { x: 2, y: 2 };
     this.size = 25;
+    this.game = game;
     this.WIDTH = game.WIDTH;
     this.HEIGHT = game.HEIGHT;
-    this.game = game;
   }
 
   draw(ctx) {
@@ -20,16 +20,15 @@ export default class Ball {
   }
 
   update() {
-    /* console.log(this.game.paddle.position.x); */
     this.position.x += this.speed.x;
     this.position.y += this.speed.y;
 
-    //COLISIONS
-    /* WALL LEFT OR RIGHT */
+    /* COLISIONS */
+    /* WALL -> LEFT OR RIGHT */
     if (this.position.x > this.WIDTH - this.size || this.position.x < 0) {
       this.speed.x = -this.speed.x;
     }
-    /* WALL TOP OR BOTTOM */
+    /* WALL -> TOP OR BOTTOM */
     if (this.position.y > this.HEIGHT - this.size || this.position.y < 0) {
       this.speed.y = -this.speed.y;
     }
